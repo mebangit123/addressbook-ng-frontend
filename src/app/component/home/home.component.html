@@ -1,0 +1,38 @@
+<div class="main-content">
+    <div class="header-content sub-main-content">
+        <div class="person-detail-text">
+            Person Details
+        </div>
+        <div class="add-button">
+            <div class="plus-icon">
+                <img src="../assets/icons/add-24px.svg" alt="Add User Logo">
+            </div> 
+            <a routerLink="/add">Add Person</a>
+        </div>
+    </div>
+    <div class="table-main">
+        <table  class="table">
+            <tr>
+                <th>FullName</th>
+                <th>Address</th>
+                <th>City</th>
+                <th>State</th>
+                <th>Zip Code</th>
+                <th>Phone Number</th>
+            </tr>
+            <tr  *ngFor= "let addressbook of addressBookList">
+                <td>{{addressbook.firstName + addressbook.lastName}}</td>
+                <td>{{addressbook.address}}</td>
+                <td>{{addressbook.city}}</td>
+                <td>{{addressbook.state}}</td>
+                <td>{{addressbook.zip}}</td>
+                <td>{{addressbook.phoneNo}}</td>
+
+                <td>
+                    <img   src="../assets/icons/delete-black-18dp.svg" alt="delete">
+                    <img   src="../assets/icons/create-black-18dp.svg" alt="update">
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
