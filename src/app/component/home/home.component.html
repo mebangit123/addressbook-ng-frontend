@@ -20,17 +20,17 @@
                 <th>Zip Code</th>
                 <th>Phone Number</th>
             </tr>
-            <tr  *ngFor= "let addressbook of addressBookList">
-                <td>{{addressbook.firstName}}</td>
-                <td>{{addressbook.address}}</td>
-                <td>{{addressbook.city}}</td>
-                <td>{{addressbook.state}}</td>
-                <td>{{addressbook.zip}}</td>
-                <td>{{addressbook.phoneNo}}</td>
+            <tr  *ngFor= "let contact of addressBookContactList">
+                <td>{{contact.firstName}}</td>
+                <td>{{contact.address}}</td>
+                <td>{{contact.city}}</td>
+                <td>{{contact.state}}</td>
+                <td>{{contact.zip}}</td>
+                <td>{{contact.phoneNo}}</td>
 
                 <td>
-                    <img (click)="remove(addressbook.id)"  src="../assets/icons/delete-black-18dp.svg" alt="delete">
-                    <img   src="../assets/icons/create-black-18dp.svg" alt="update">
+                    <img (click)="remove(contact.id)"  src="../assets/icons/delete-black-18dp.svg" alt="delete">
+                    <img (click)="update(contact.id,contact)" src="../assets/icons/create-black-18dp.svg" alt="update">
                 </td>
             </tr>
         </table>
