@@ -15,7 +15,13 @@ export class HttpService {
              returns the response body as a JSON object. 
   * @returns List of Addressbook object.
   */
-  getEmployeeData(): Observable<any> {
+  getAddressBookData(): Observable<any> {
     return this.httpClient.get(this.baseUrl+ "/get");
+  }
+  addAddressBook(person): Observable<any> {
+    return this.httpClient.post(this.baseUrl+"/create", person);
+  }
+  deleteContact(id: number) {
+    return this.httpClient.delete(this.baseUrl+"/delete/"+id);
   }
 }

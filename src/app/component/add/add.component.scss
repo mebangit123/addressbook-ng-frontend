@@ -1,0 +1,73 @@
+.form-content {
+    min-height: calc(100% - 80px);
+    background-color: #F7F7F7;
+    display: flex;
+    justify-content: center;
+    // align-items: center;
+    border: 0px solid green;
+}
+.header-content {
+    display: flex;
+    background: #008CFF 0% 0% no-repeat padding-box;
+    flex-direction: row;
+    justify-content: center;
+    min-height: 70px;
+    border-radius: 10px 10px 0px 0px;
+    margin-bottom: 40px;
+    align-items: center;
+}
+.form-head {
+    font: normal normal normal 28px/37px Roboto;
+}
+.cancel-icon img{
+    margin: 0 20px;
+}
+.form {
+    width: 65%;
+    padding: 0px 0px 60px 0px;
+    background: #ffffff 0% 0% no-repeat padding-box;
+    box-shadow: 0px 3px 6px #00000029;
+    border: 1px solid #f5f5f5;
+    border-radius: 10px;
+    opacity: 1;
+    margin: 40px;
+}
+.column-content {
+    display: flex;
+    flex-direction: column;
+    margin: 0px 50px ;
+    // align-items: center;
+    border: 0px solid green;
+}
+.address {
+    min-height: 50px;
+}
+
+.select-content{
+    display: flex;
+    flex-direction: row;
+    margin: 0px 50px ;
+       
+}
+.select-row {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+    width: 100%;
+    overflow: hidden;
+}
+mat-label{
+    padding-bottom: 10px;
+}
+.buttonParent {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+.button {
+    margin-right: 50px;
+    padding: 3px 50px;
+}
+.cancel-icon {
+    float: right;
+}

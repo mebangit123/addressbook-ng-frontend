@@ -1,0 +1,58 @@
+<div class="form-content">
+    <form class="form" [formGroup]="personForm" (submit)="addPerson()">
+        <div class="header-content">
+            <div class="form-head">Person Address Form</div>
+            <div class="cancel-icon"><a routerLink="/home"><img src="../../../assets/images/cancel.jpeg" alt=""></a></div>
+        </div>
+        <div class="column-content">
+            <mat-label class="label text">Full Name</mat-label>
+            <mat-form-field appearance="outline">
+                <input matInput formControlName="firstName" placeholder="">
+            </mat-form-field>
+        </div>
+        <div class="column-content">
+            <mat-label class="label text">Phone Number</mat-label>
+            <mat-form-field appearance="outline">
+                <input matInput formControlName="phoneNo" placeholder="">
+            </mat-form-field>
+        </div>
+        <div class="column-content">
+            <mat-label class="label text">Address</mat-label>
+            <mat-form-field appearance="outline">
+                <input matInput class="address" formControlName="address" placeholder="">
+            </mat-form-field>
+        </div>
+        <div class="select-content">
+            <div class="select-row">
+                <mat-label>City</mat-label>
+                <mat-form-field appearance="outline">
+                    <mat-select formControlName="city">
+                        <mat-option>None</mat-option>
+                        <mat-option *ngFor="let city of cities" [value]="city">{{city}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="select-row">
+                <mat-label>State</mat-label>
+                <mat-form-field appearance="outline">
+                    <mat-select formControlName="state">
+                        <mat-option>None</mat-option>
+                        <mat-option *ngFor="let state of states" [value]="state">{{state}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="select-row">
+                <mat-label class="label text">Zip</mat-label>
+                <mat-form-field appearance="outline">
+                    <input matInput class="" formControlName="zip" placeholder="">
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="buttonParent">
+            <div class="submit-reset">
+            <button mat-raised-button color="primary" type="submit" class="button addButton">Add</button>
+            <button mat-raised-button color="primary" type="reset" class="resetButton button">Reset</button>
+            </div>
+        </div> 
+    </form>
+</div>

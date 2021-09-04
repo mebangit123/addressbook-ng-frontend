@@ -14,10 +14,15 @@ export class HomeComponent implements OnInit {
   constructor(private httpService: HttpService) {}
  
   ngOnInit(): void {
-    this.httpService.getEmployeeData().subscribe(response => {
+    this.httpService.getAddressBookData().subscribe(response => {
       console.log(response);
       this.addressBookList = response.data;
     })
   }
-
+  remove(id: number) {
+    this.httpService.deleteContact(id).subscribe(response=> {
+        console.log(response)
+        this.ngOnInit(); 
+    })     
+  }
 }
