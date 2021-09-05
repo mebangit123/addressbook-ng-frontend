@@ -8,12 +8,16 @@
             <mat-label class="label text">Full Name</mat-label>
             <mat-form-field appearance="outline">
                 <input matInput formControlName="firstName" placeholder="">
+                <mat-error *ngIf="(this.personForm.get('firstName').touched || this.personForm.get('firstName').dirty) &&  this.personForm.get('firstName').hasError('required')">Name is required!!</mat-error>
+                <mat-error *ngIf="this.personForm.get('firstName').hasError('pattern')">Invalid Name!</mat-error>
             </mat-form-field>
         </div>
         <div class="column-content">
             <mat-label class="label text">Phone Number</mat-label>
             <mat-form-field appearance="outline">
                 <input matInput formControlName="phoneNo" placeholder="">
+                <mat-error *ngIf="(this.personForm.get('phoneNo').touched || this.personForm.get('phoneNo').dirty) &&  this.personForm.get('phoneNo').hasError('required')">Phone Number is required!!</mat-error>
+                <mat-error *ngIf="this.personForm.get('phoneNo').hasError('pattern')">Invalid Phone Number!</mat-error>
             </mat-form-field>
         </div>
         <div class="column-content">
@@ -45,12 +49,14 @@
                 <mat-label class="label text">Zip</mat-label>
                 <mat-form-field appearance="outline">
                     <input matInput class="" formControlName="zip" placeholder="">
+                    <mat-error *ngIf="(this.personForm.get('zip').touched || this.personForm.get('zip').dirty) &&  this.personForm.get('zip').hasError('required')">Zip Code is required!!</mat-error>
+                    <mat-error *ngIf="this.personForm.get('zip').hasError('pattern')">Invalid Zip Code!</mat-error>
                 </mat-form-field>
             </div>
         </div>
         <div class="buttonParent">
             <div class="submit-reset">
-            <button mat-raised-button color="primary" type="submit" class="button addButton">Add</button>
+            <button mat-raised-button color="primary" type="submit" class="button addButton" (click)="checkValidation()">Add</button>
             <button mat-raised-button color="primary" type="reset" class="resetButton button">Reset</button>
             </div>
         </div> 

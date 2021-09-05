@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { AddressBook } from 'src/app/model/address-book';
 import { DataService } from 'src/app/service/data.service';
@@ -13,7 +14,10 @@ export class HomeComponent implements OnInit {
  
   addressBookContactList: AddressBook[] = [];
 
-  constructor(private httpService: HttpService,private route: Router, private dataService: DataService) {}
+  constructor(private httpService: HttpService,
+              private route: Router,
+              private dataService: DataService,
+              private snackBar: MatSnackBar) {}
  
   ngOnInit(): void {
     this.httpService.getAllAddressBookContact().subscribe(response => {
@@ -27,7 +31,11 @@ export class HomeComponent implements OnInit {
    */
   remove(id: number) {
     this.httpService.deleteAddressBookContact(id).subscribe(response=> {
-        console.log(response)
+      this.snackBar.open(response.message,'',{
+        duration:3000,
+        verticalPosition: 'top',
+        panelClass: ['green-snackbar']
+    })
         this.ngOnInit(); 
     })     
   }

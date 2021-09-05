@@ -1,7 +1,8 @@
-import { HttpClient } from '@angular/common/http';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AddressBook } from 'src/app/model/address-book';
 import { DataService } from 'src/app/service/data.service';
 import { HttpService } from 'src/app/service/http.service';
@@ -15,6 +16,7 @@ export class AddComponent implements OnInit {
  
   id: number;
   isUpdate: boolean = false;
+  isInvalid: boolean = false;
   personForm: FormGroup = new FormGroup({});
   addressBookContact: AddressBook = new AddressBook();
 
@@ -35,14 +37,16 @@ export class AddComponent implements OnInit {
   constructor(private formBuilder: FormBuilder, 
               private httpService: HttpService,
               private activatedRoute: ActivatedRoute,
-              private dataService: DataService  ) {
+              private dataService: DataService,
+              private snackBar: MatSnackBar,
+              private route: Router) {
     this.personForm = this.formBuilder.group({
-      firstName: [''],
-      address: [''],
-      city: [''],
-      state: [''],
-      zip: [''],
-      phoneNo: ['']
+      firstName: ['', Validators.compose([Validators.required, Validators.pattern('^[A-Z]{1}[a-zA-Z\\s]{2,}$')])],
+      address: ['', Validators.required],
+      city: ['', Validators.required],
+      state: ['', Validators.required],
+      zip: ['', Validators.compose([Validators.required, Validators.pattern('^[1-9]{1}[0-9]{2}\\s{0,1}[0-9]{3}$')])],
+      phoneNo: ['', Validators.compose([Validators.required, Validators.pattern('^[1-9]{1}[0-9]{9}$')])]
     }) 
    }
    
@@ -65,21 +69,58 @@ export class AddComponent implements OnInit {
       })
     }
   }
+
+  /**
+  * Purpose: To display Error message using Snackbar.
+  * @param message Error message
+  */
+  openSnackBar(message: string) {
+    this.snackBar.open(message, '',{
+      duration:3000,
+      verticalPosition: 'top',
+      panelClass: ['red-snackbar']
+    })
+  }
+
+  /**
+   * Purpose: Check validation for input fields.
+   * @returns 
+   */
+  checkValidation() {
+    if(this.personForm.get('city').hasError('required')) {
+      this.isInvalid = true;
+      this.openSnackBar("Select city!")
+      return;
+    } else if(this.personForm.get('state').hasError('required')) {
+      this.isInvalid = true;
+      this.openSnackBar("Select state")
+      return;
+    }
+  }
   /**
    * Purpose: To add AddressBook data to the database.
    */
   addPerson() {
     this.addressBookContact = this.personForm.value;
-    if(this.isUpdate) {
-      console.log(this.addressBookContact);
-      
-      this.httpService.updateAddressbookContact(this.id, this.addressBookContact).subscribe(response => {
-        console.log(response);
+    if(!this.isInvalid) {
+      if(this.isUpdate) {
+        this.httpService.updateAddressbookContact(this.id, this.addressBookContact).subscribe(response => {
+          this.snackBar.open(response.message,'',{
+            duration:3000,
+            verticalPosition: 'top',
+            panelClass: ['green-snackbar']
+          })
       })
-    } else {
-      this.httpService.addAddressBookContact(this.addressBookContact).subscribe(response => {
-        console.log(response);
-      })
-    }
+      } else {
+        this.httpService.addAddressBookContact(this.addressBookContact).subscribe(response => {
+          this.snackBar.open(response.message,'',{
+            duration:3000,
+            verticalPosition: 'top',
+            panelClass: ['green-snackbar']
+        })
+        })
+      }
+      this.route.navigateByUrl('/home');
+    } else { return;}
   }
 }

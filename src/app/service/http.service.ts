@@ -34,7 +34,7 @@ export class HttpService {
    * @param id AddressBook Contact Id to be deleted.
    * @returns A response message if deleted successfully.
    */
-  deleteAddressBookContact(id: number) {
+  deleteAddressBookContact(id: number): Observable<any> {
     return this.httpClient.delete(this.baseUrl+"/delete/"+id);
   }
   /**
@@ -43,7 +43,7 @@ export class HttpService {
    * @param contact AddressBook contact as a request body.
    * @returns An Addressbook response object and response message. 
    */
-  updateAddressbookContact(id: number, contact: AddressBook) {
+  updateAddressbookContact(id: number, contact: AddressBook): Observable<any> {
     return this.httpClient.put(this.baseUrl+'/update/'+id, contact)
   }
 }
