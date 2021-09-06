@@ -3,24 +3,29 @@
     background-color: #F7F7F7;
     display: flex;
     justify-content: center;
-    // align-items: center;
     border: 0px solid green;
 }
 .header-content {
     display: flex;
+    width: 100%;
     background: #008CFF 0% 0% no-repeat padding-box;
     flex-direction: row;
-    justify-content: center;
+    justify-content: flex-end;
     min-height: 70px;
     border-radius: 10px 10px 0px 0px;
-    margin-bottom: 40px;
+    margin-bottom: 35px;
     align-items: center;
 }
-.form-head {
+.person-detail {
+    margin-right: 230px;
     font: normal normal normal 28px/37px Roboto;
+    letter-spacing: 0px;
+    color: #FFFFFF;
+    text-transform: uppercase;
+    opacity: 1;
 }
-.cancel-icon img{
-    margin: 0 20px;
+.cancel-icon{
+    margin: 0 50px;
 }
 .form {
     width: 65%;
@@ -30,44 +35,64 @@
     border: 1px solid #f5f5f5;
     border-radius: 10px;
     opacity: 1;
-    margin: 40px;
+    margin: 35px;
 }
 .column-content {
     display: flex;
     flex-direction: column;
-    margin: 0px 50px ;
-    // align-items: center;
+    margin: 0px 100px ;
     border: 0px solid green;
 }
 .address {
-    min-height: 50px;
+    min-height: 40px;
 }
-
 .select-content{
     display: flex;
     flex-direction: row;
-    margin: 0px 50px ;
-       
+    margin: 0px 100px ;
 }
 .select-row {
     display: flex;
     flex-direction: column;
-    margin: 10px;
+    padding: 0px 15px 0px 0px;    
     width: 100%;
-    overflow: hidden;
+    overflow: auto;
 }
 mat-label{
     padding-bottom: 10px;
+}
+* {
+    box-sizing: border-box;
 }
 .buttonParent {
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
+    margin: 0px 100px;
 }
 .button {
-    margin-right: 50px;
-    padding: 3px 50px;
+    margin-left: 50px;
+    padding: 8px 50px;
+    background: #E2E2E2 0% 0% no-repeat padding-box;
+    border: 1px solid #969696;
+    border-radius: 5px;
+    font: normal normal normal 20px/26px Roboto;
+    letter-spacing: 0px;
+    color: #42515F;
+    opacity: 1;
 }
-.cancel-icon {
-    float: right;
+.addButton:hover {
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+    background-color: #008CFF;
+    font: normal normal normal 20px/26px Roboto;
+    color: white;
+  }
+.resetButton:hover {
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+    background-color: #42515F;
+    font: normal normal normal 20px/26px Roboto;
+    color: white;
+}
+::ng-deep .mat-form-field {
+    font-size: 12px;
 }

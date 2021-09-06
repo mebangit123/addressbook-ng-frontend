@@ -6,6 +6,6 @@ export class AddressBook {
 	city: string;
 	state: string;
 	zip: number;
-	phoneNo: number;
+	phoneNo: string;
 	email: string;
 }

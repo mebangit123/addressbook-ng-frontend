@@ -1,13 +1,13 @@
 <div class="form-content">
     <form class="form" [formGroup]="personForm" (submit)="addPerson()">
         <div class="header-content">
-            <div class="form-head">Person Address Form</div>
+            <div class="person-detail">Person Address Form</div>
             <div class="cancel-icon"><a routerLink="/home"><img src="../../../assets/images/cancel.jpeg" alt=""></a></div>
         </div>
         <div class="column-content">
             <mat-label class="label text">Full Name</mat-label>
-            <mat-form-field appearance="outline">
-                <input matInput formControlName="firstName" placeholder="">
+            <mat-form-field  appearance="outline">
+                <input matInput class="input"  formControlName="firstName" placeholder="">
                 <mat-error *ngIf="(this.personForm.get('firstName').touched || this.personForm.get('firstName').dirty) &&  this.personForm.get('firstName').hasError('required')">Name is required!!</mat-error>
                 <mat-error *ngIf="this.personForm.get('firstName').hasError('pattern')">Invalid Name!</mat-error>
             </mat-form-field>
